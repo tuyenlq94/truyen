@@ -14,6 +14,40 @@
 							{{ session('status') }}
 						</div>
 					@endif
+					<table class="table">
+						<thead>
+							<tr>
+							<th scope="col">#</th>
+							<th scope="col">Tên danh mục</th>
+							<th scope="col">Mô tả</th>
+							<th scope="col">Trạng thái</th>
+							<th scope="col">Quản lý</th>
+							</tr>
+						</thead>
+						<tbody>
+							@foreach($data as $key => $value)
+							<tr>
+								<th scope="row">{{ $key }}</th>
+								<td>{{ $value->name }}</td>
+								<td>{{ $value->description }}</td>
+								<td>
+									@if( $value->status == 0 )
+										<span class="text text-success">Kích hoạt</span>
+									@else
+										<span class="text text-danger">Không Kích hoạt</span>
+									@endif
+								</td>
+								<td>
+									<form method="POST" action="{{ route('danhmuc.destroy', ['danhmuc' => $value->id]) }}">
+										@method('DELETE')
+										@csrf
+										<button onclick="return confirm('Bạn có muốn xóa danh mục truyện này không?')" class="btn btn-danger">Delete</button>
+									</form>
+								</td>
+							</tr>
+							@endforeach
+						</tbody>
+					</table>
 
 				</div>
 			</div>

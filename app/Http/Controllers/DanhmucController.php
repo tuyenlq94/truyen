@@ -13,7 +13,8 @@ class DanhmucController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index() {
-		return view( 'admincp.danhmuctruyen.index' );
+		$data = DanhmucTruyen::orderby( 'id', 'desc' )->get();
+		return view( 'admincp.danhmuctruyen.index' )->with( compact( 'data' ) );
 	}
 
 	/**
@@ -86,5 +87,7 @@ class DanhmucController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function destroy( $id ) {
+		DanhmucTruyen::find( $id )->delete();
+		return redirect()->back()->with( 'status', 'Xóa danh mục thành công' );
 	}
 }
