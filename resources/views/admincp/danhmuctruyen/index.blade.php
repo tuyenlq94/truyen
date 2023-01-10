@@ -6,7 +6,7 @@
 	<div class="row justify-content-center">
 		<div class="col-md-12">
 			<div class="card">
-				<div class="card-header">{{ __('Trang quản lý') }}</div>
+				<div class="card-header">{{ __('List danh mục truyện') }}</div>
 
 				<div class="card-body">
 					@if (session('status'))
