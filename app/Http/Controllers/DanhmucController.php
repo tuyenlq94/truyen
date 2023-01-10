@@ -36,6 +36,7 @@ class DanhmucController extends Controller {
 		$data                       = $request->validate(
 			[
 				'name'        => 'required|unique:danhmuc|max:255',
+				'slug'        => 'required|unique:danhmuc|max:255',
 				'description' => 'required',
 				'status'      => 'required',
 			],
@@ -48,6 +49,7 @@ class DanhmucController extends Controller {
 		);
 		$danhmuctruyen              = new DanhmucTruyen();
 		$danhmuctruyen->name        = $data['name'];
+		$danhmuctruyen->slug        = $data['slug'];
 		$danhmuctruyen->description = $data['description'];
 		$danhmuctruyen->status      = $data['status'];
 		$danhmuctruyen->save();
@@ -85,6 +87,7 @@ class DanhmucController extends Controller {
 		$data                       = $request->validate(
 			[
 				'name'        => 'required|max:255',
+				'slug'        => 'required|max:255',
 				'description' => 'required',
 				'status'      => 'required',
 			],
@@ -95,6 +98,7 @@ class DanhmucController extends Controller {
 		);
 		$danhmuctruyen              = DanhmucTruyen::find( $id );
 		$danhmuctruyen->name        = $data['name'];
+		$danhmuctruyen->slug        = $data['slug'];
 		$danhmuctruyen->description = $data['description'];
 		$danhmuctruyen->status      = $data['status'];
 

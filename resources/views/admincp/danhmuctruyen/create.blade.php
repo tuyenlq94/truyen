@@ -27,7 +27,11 @@
 						@csrf
 						<div class="mb-3">
 							<label for="name" class="form-label">Tên</label>
-							<input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" placeholder="Tên danh mục truyện">
+							<input type="text" class="form-control" id="slug" name="name" onkeyup="ChangeToSlug();" value="{{ old('name') }}" placeholder="Tên danh mục truyện">
+						</div>
+						<div class="mb-3">
+							<label for="slug" class="form-label">Slug</label>
+							<input type="text" class="form-control" id="convert_slug" name="slug" value="{{ old('slug') }}" placeholder="Slug danh mục truyện">
 						</div>
 						<div class="mb-3">
 							<label for="description" class="form-label">Mô tả</label>

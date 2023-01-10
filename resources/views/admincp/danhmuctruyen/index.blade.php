@@ -18,7 +18,8 @@
 						<thead>
 							<tr>
 							<th scope="col">#</th>
-							<th scope="col">Tên danh mục</th>
+							<th scope="col">Tên</th>
+							<th scope="col">Slug</th>
 							<th scope="col">Mô tả</th>
 							<th scope="col">Trạng thái</th>
 							<th scope="col">Quản lý</th>
@@ -29,6 +30,7 @@
 							<tr>
 								<th scope="row">{{ $key }}</th>
 								<td>{{ $value->name }}</td>
+								<td>{{ $value->slug }}</td>
 								<td>{{ $value->description }}</td>
 								<td>
 									@if( $value->status == 0 )
