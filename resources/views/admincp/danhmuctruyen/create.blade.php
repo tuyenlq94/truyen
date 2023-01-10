@@ -27,11 +27,11 @@
 						@csrf
 						<div class="mb-3">
 							<label for="name" class="form-label">Tên</label>
-							<input type="text" class="form-control" id="name" name="name" placeholder="Tên danh mục truyện">
+							<input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" placeholder="Tên danh mục truyện">
 						</div>
 						<div class="mb-3">
 							<label for="description" class="form-label">Mô tả</label>
-							<input type="text" class="form-control" id="description" name="description" placeholder="Mô tả danh mục truyện">
+							<input type="text" class="form-control" id="description" name="description" value="{{ old('description') }}" placeholder="Mô tả danh mục truyện">
 						</div>
 						<div class="mb-3">
 							<label for="description_danhmuc" class="form-label">Kích hoạt danh mục</label>

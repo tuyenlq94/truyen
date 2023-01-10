@@ -38,7 +38,8 @@
 									@endif
 								</td>
 								<td>
-									<form method="POST" action="{{ route('danhmuc.destroy', ['danhmuc' => $value->id]) }}">
+									<a href="{{ route('danhmuc.edit', [$value->id]) }}" class="btn btn-primary">Edit</a>
+									<form method="POST" action="{{ route('danhmuc.destroy', [$value->id]) }}">
 										@method('DELETE')
 										@csrf
 										<button onclick="return confirm('Bạn có muốn xóa danh mục truyện này không?')" class="btn btn-danger">Delete</button>

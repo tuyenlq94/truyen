@@ -41,6 +41,8 @@ class DanhmucController extends Controller {
 			],
 			[
 				'name.required'        => 'Tên danh mục phải có',
+				'name.unique'          => 'Tên danh mục đã có. Vui lòng thêm tên khác',
+				'name.max'             => 'Tên danh mục chỉ có 255 ký tự',
 				'description.required' => 'Mô tả danh mục phải có',
 			]
 		);
@@ -68,6 +70,8 @@ class DanhmucController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function edit( $id ) {
+		$data = DanhmucTruyen::find( $id );
+		return view( 'admincp.danhmuctruyen.edit' )->with( compact( 'data' ) );
 	}
 
 	/**
@@ -78,6 +82,25 @@ class DanhmucController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function update( Request $request, $id ) {
+		$data                       = $request->validate(
+			[
+				'name'        => 'required|max:255',
+				'description' => 'required',
+				'status'      => 'required',
+			],
+			[
+				'name.required'        => 'Tên danh mục phải có',
+				'description.required' => 'Mô tả danh mục phải có',
+			]
+		);
+		$danhmuctruyen              = DanhmucTruyen::find( $id );
+		$danhmuctruyen->name        = $data['name'];
+		$danhmuctruyen->description = $data['description'];
+		$danhmuctruyen->status      = $data['status'];
+
+		$danhmuctruyen->save();
+
+		return redirect()->back()->with( 'status', 'Cập nhập danh mục thành công' );
 	}
 
 	/**
