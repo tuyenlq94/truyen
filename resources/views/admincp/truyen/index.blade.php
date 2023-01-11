@@ -31,7 +31,7 @@
 							@foreach($data as $key => $value)
 							<tr>
 								<th scope="row">{{ $key }}</th>
-								<td><img src="{{ asset('public/uploads/truyen/'. $value->image ) }}" width="200" height="200" style="object-fit: contain;"></td>
+								<td><img src="{{ asset('uploads/truyen/'. $value->image ) }}" width="200" height="200" style="object-fit: contain;"></td>
 								<td>{{ $value->name }}</td>
 								<td>{{ $value->slug }}</td>
 								<td>{{ $value->author }}</td>

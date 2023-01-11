@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\DanhmucTruyen;
 use App\Models\Truyen;
+
+use function PHPUnit\Framework\fileExists;
+
 class TruyenController extends Controller {
 
 	/**
@@ -63,7 +66,7 @@ class TruyenController extends Controller {
 
 		// Thêm ảnh vào folder ảnh
 		$get_image      = $request->image;
-		$path           = 'public/uploads/truyen/'; // đường dẫn tời thư mục ảnh
+		$path           = 'uploads/truyen/'; // đường dẫn tời thư mục ảnh
 		$get_name_image = $get_image->getClientOriginalName(); // lấy tên hình ảnh
 		$name_image     = current( explode( '.', $get_name_image ) );
 		$new_image      = $name_image . rand( 0, 99 ) . '.' . $get_image->getClientOriginalExtension();
@@ -110,7 +113,12 @@ class TruyenController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function destroy( $id ) {
-		// Truyen::find( $id )->delete();
-		// return redirect()->back()->with( 'status', 'Xóa Truyện thành công' );
+		$truyen = Truyen::find( $id );
+		$path   = 'uploads/truyen/' . $truyen->image;
+		if ( file_exists( $path ) ) {
+			unlink( $path );
+		}
+		Truyen::find( $id )->delete();
+		return redirect()->back()->with( 'status', 'Xóa Truyện thành công' );
 	}
 }
