@@ -54,13 +54,13 @@
 							<input type="file" class="form-control-file" name="image">
 						</div>
 						<div class="mb-3">
-							<label for="description_danhmuc" class="form-label">Kích hoạt danh mục</label>
+							<label for="status_truyen" class="form-label">Kích hoạt truyện</label>
 							<select class="form-select" name="status" aria-label="Default select example">
 								<option value="0">Kích hoạt</option>
 								<option value="1">Không kích hoạt</option>
 							</select>
 						</div>
-						<button type="submit" name="themdanhmuc" class="btn btn-primary">Thêm</button>
+						<button type="submit" name="themtruyen" class="btn btn-primary">Thêm</button>
 					</form>
 				</div>
 			</div>
