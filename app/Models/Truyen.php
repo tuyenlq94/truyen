@@ -21,4 +21,8 @@ class Truyen extends Model {
 	];
 	protected $primakey = 'id';
 	protected $table    = 'truyen';
+
+	public function danhmuctruyen() {
+		return $this->belongsTo( 'App\Models\DanhmucTruyen', 'category', 'id' );
+	}
 }

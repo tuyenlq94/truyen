@@ -16,6 +16,10 @@ class DanhmucTruyen extends Model {
 		'description',
 		'status',
 	];
-	// protected $primakey = 'danhmuc_id';
-	protected $table = 'danhmuc';
+	protected $primakey = 'id';
+	protected $table    = 'danhmuc';
+
+	public function truyen() {
+		return $this->hasMany( 'App\Models\Truyen' );
+	}
 }

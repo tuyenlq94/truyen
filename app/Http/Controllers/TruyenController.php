@@ -13,7 +13,8 @@ class TruyenController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index() {
-		return view( 'admincp.truyen.index' );
+		$data = Truyen::with( 'danhmuctruyen' )->orderBy( 'id', 'desc' )->get();
+		return view( 'admincp.truyen.index' )->with( compact( 'data' ) );
 	}
 
 	/**
@@ -109,5 +110,7 @@ class TruyenController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function destroy( $id ) {
+		// Truyen::find( $id )->delete();
+		// return redirect()->back()->with( 'status', 'Xóa Truyện thành công' );
 	}
 }
