@@ -82,6 +82,9 @@ class ChapterController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function edit( $id ) {
+		$chapter = Chapter::find( $id );
+		$truyen  = Truyen::orderBy( 'id', 'desc' )->get();
+		return view( 'admincp.chapter.edit' )->with( compact( 'truyen', 'chapter' ) );
 	}
 
 	/**
@@ -92,6 +95,35 @@ class ChapterController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function update( Request $request, $id ) {
+		$data                 = $request->validate(
+			[
+				'name'        => 'required|max:255',
+				'slug'        => 'required|max:255',
+				'description' => 'required',
+				'content'     => 'required',
+				'status'      => 'required',
+				'truyen_id'   => 'required',
+			],
+			[
+				'slug.required'        => 'Slug phải có',
+				'name.required'        => 'Tên chapter phải có',
+				'name.unique'          => 'Tên chapter đã có. Vui lòng thêm tên khác',
+				'name.max'             => 'Tên chapter chỉ có 255 ký tự',
+				'description.required' => 'Mô tả chapter phải có',
+				'content.required'     => 'Nội dung chapter phải có',
+				'truyen_id.required'   => 'Thuộc truyện phải có',
+			]
+		);
+		$chapter              = Chapter::find( $id );
+		$chapter->name        = $data['name'];
+		$chapter->slug        = $data['slug'];
+		$chapter->content     = $data['content'];
+		$chapter->description = $data['description'];
+		$chapter->truyen_id   = $data['truyen_id'];
+		$chapter->status      = $data['status'];
+
+		$chapter->save();
+		return redirect()->back()->with( 'status', 'Cập nhập chapter thành công' );
 	}
 
 	/**
