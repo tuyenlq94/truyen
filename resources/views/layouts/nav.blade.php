@@ -23,6 +23,15 @@
 					<li><a class="dropdown-item" href="{{ route('truyen.index') }}">List sách truyện</a></li>
 				</ul>
 			</li>
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+					Chapter truyện
+				</a>
+				<ul class="dropdown-menu">
+					<li><a class="dropdown-item" href="{{ route('chapter.create') }}">Thêm chapter truyện</a></li>
+					<li><a class="dropdown-item" href="{{ route('chapter.index') }}">List chapter truyện</a></li>
+				</ul>
+			</li>
 		</ul>
 		<form class="d-flex" role="search">
 			<input class="form-control me-2" type="search" placeholder="Tìm kiếm" aria-label="Search">
